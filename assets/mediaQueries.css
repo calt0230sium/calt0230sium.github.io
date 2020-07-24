@@ -20,6 +20,14 @@
 		padding-bottom:20%;
 	}
 
+	.workTitle {
+		font-size:50px;
+	}
+
+	.titleProject {
+		font-size:45px;
+	}
+
 	.titleProjectBig {
 		font-size:55px;
 	}
@@ -31,7 +39,7 @@
 	}
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 500px) {
 	.work {
 		flex-direction:column;
 	}
@@ -39,4 +47,28 @@
 		.project {
 			padding:30%;
 		}
+	
+	.asciiTitle {
+		font-size:3px;
+	}
+
+	body {
+		font-size:12px;
+	}
+
+	.input {
+		font-size:12px;
+	}
+
+	.workTitle {
+		font-size:15px;
+	}
+
+	.titleProject {
+		font-size:13px;
+	}
+
+	.titleProjectBig {
+		font-size:16px;
+	}
 }

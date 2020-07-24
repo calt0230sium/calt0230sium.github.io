@@ -71,7 +71,7 @@ class Shell {
 	displayWelcome(){
 		let div = document.createElement("div");
 		div.setAttribute("class", "commandBox");
-		div.innerHTML = "Silk > Hello and welcome on my Website ! <br>"+
+		div.innerHTML = "Silk > Hello and welcome to my Website ! <br>"+
 						"You can type help in the command input to discover more.";
 
 		this.terminal.appendChild(div);

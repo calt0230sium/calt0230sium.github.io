@@ -24,10 +24,10 @@ command_input.addEventListener('keypress', function(event){
 
 		commanndUse = false;
 
-		for(const WorkList in Database.work){
-			if(command_input.value === WorkList.title+"?"){
+		for(const WorkList in Database.Work){
+			if(command_input.value === Database.Work[WorkList].title+"?"){
 				commanndUse = true;
-				SilkConsole.displayWork(WorkList);
+				SilkConsole.displayWork(Database.Work[WorkList]);
 			}
 		}
 
