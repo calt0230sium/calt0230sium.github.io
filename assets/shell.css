@@ -1,0 +1,114 @@
+/* header */
+
+.asciiTitle {
+	width:100%;
+	font-size:15px;
+	text-align:center;
+}
+
+#title {
+	display:none;
+}
+
+	/* nav */
+
+	.navLink {
+		padding:1%;
+		color:white;
+
+		text-decoration:none;
+
+		transition-duration:0.2s;
+	}
+
+		.navLink:hover {
+			transition-duration:0.2s;
+			
+			opacity:0.6;
+		}
+
+	/* shell */
+
+	.terminal {
+		width:100%;
+	}
+
+	.input {
+		width:98%;
+		padding:1%;
+
+		border:0;
+
+		background-color:#131313;
+		color:white;
+		
+		font-family: 'VT323', monospace;
+
+		outline: none;
+
+		transition-duration: 0.2s;
+	}
+
+		.input:focus {
+			color:silver;
+			background-color:#212121;
+
+			transition-duration: 0.2s;
+		}
+
+	.container {
+		width:98%;
+		padding:1%;
+
+		background-color:#101010;
+	}
+
+		.omegaTitle {
+			margin:0;
+			padding-right:0.5%;
+			font-size:50px;
+		}
+
+/* Commands box */
+
+.commandBox {
+	margin-top:0.5%;
+	margin-bottom:0.5%;
+	padding:0.5%;
+	background-color:#202020;
+}
+
+	.commandBoxTitle {
+		font-size:40px;
+
+		text-shadow: -1px 1px 0px #000000;
+	}
+
+	.mosaicContainer {
+		width:100%;
+
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction:row;
+		align-items: stretch;
+	}
+
+		.mosaicDiv {
+			flex-basis:49%;
+			margin:0.5%;
+
+			background-color:#464646;
+
+			text-align:center;
+		}
+
+			.gauge {
+				width:100%;
+				animation-duration: 3s;
+					animation-name: slidein;
+				
+				background-color:white;
+				color:silver;
+
+				text-align:left;
+			}

@@ -1,0 +1,65 @@
+html{
+	height:100%;
+	margin:0;
+}
+
+body {
+	width:100%;
+	height:50%;
+	margin:0;
+
+	background-color:#131313;
+	color:white;
+
+	font-size:25px;
+	font-family: 'VT323', monospace;
+}
+
+input[type="submit"]:focus{
+	outline: none;
+}
+
+iframe {
+	width:720px;
+	height:450px;
+}
+
+a {
+	text-decoration:none;
+}
+
+header {
+	padding:1%;
+	padding-top:0;
+	width:98%;
+}
+
+nav {
+	width:100%;
+	padding-top:0.5%;
+
+	display:flex;
+	justify-content:flex-end;
+}
+
+/* animations */
+
+@keyframes slidein {
+	from {
+		width: 0%;
+	}
+
+	to {
+		width: 100%;
+	}
+}
+
+@keyframes fade {
+	from {
+		opacity:0;
+	}
+
+	to {
+		opacity:1;
+	}
+}
