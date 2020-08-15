@@ -75,7 +75,13 @@
 	margin-top:0.5%;
 	margin-bottom:0.5%;
 	padding:0.5%;
-	background-color:#202020;
+}
+
+.infoBox {
+	margin-top:0.5%;
+	margin-bottom:0.5%;
+	padding:0.5%;
+	background-color:#212121;
 }
 
 	.commandBoxTitle {

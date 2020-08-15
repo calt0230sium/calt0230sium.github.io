@@ -276,7 +276,7 @@ class Shell {
 
 	displayAbout(){
 		let commandBox = document.createElement("div");
-		commandBox.setAttribute("class", "commandBox");
+		commandBox.setAttribute("class", "infoBox");
 		commandBox.style.padding = "2%";
 
 		let title = document.createElement("h1");
@@ -293,7 +293,7 @@ class Shell {
 
 	displaySkill(){
 		let commandBox = document.createElement("div");
-		commandBox.setAttribute("class", "commandBox");
+		commandBox.setAttribute("class", "infoBox");
 
 		let container = document.createElement("div");
 		container.setAttribute("class", "mosaicContainer");
