@@ -7,6 +7,10 @@
 		font-size:40px;
 	}
 
+	#titlePopup {
+		font-size:70px;
+	}
+
 	.popupDescription {
 		width:90%;
 		padding:3%;
@@ -53,7 +57,7 @@
 	}
 
 	body {
-		font-size:12px;
+		font-size:10px;
 	}
 
 	.input {
@@ -70,5 +74,15 @@
 
 	.titleProjectBig {
 		font-size:16px;
+	}
+
+	.buttoNav {
+		background-color:black;
+		border-radius:50%;
+		
+		width:20px;
+		height:20px;
+
+		font-size:13px;
 	}
 }

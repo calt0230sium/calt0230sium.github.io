@@ -187,6 +187,27 @@ class Shell {
 		this.popupContent.scrollTop = 0;
 		body.style.overflow = "hidden";
 
+		let divCross = this.createDivClass("divCross", "");
+		let cross = this.createDivClass("buttoNav", "x");
+		divCross.appendChild(cross);
+
+		let mediaBox = this.createDivClass("mediaBox", "");
+
+		let nav1 = this.createDivClass("navigation", "");
+		let nav2 = this.createDivClass("navigation", "");
+
+		let buttonL = this.createDivClass("navButton", "");
+		let buttonN = this.createDivClass("navButton", "");
+
+		let l = this.createDivId("navButton", "<");
+		let n = this.createDivId("navButton", ">");		
+		
+		buttonL.appendChild(l);
+		buttonN.appendChild(n);
+
+		if(this.currentProject > 0) nav1.appendChild(buttonL);
+		if(this.currentProject < this.currentWorkList.length - 1) nav2.appendChild(buttonN);
+
 		let media = this.createDivClass("media", WorkProject.media);
 
 		let popupDescription = document.createElement("div");
@@ -212,6 +233,25 @@ class Shell {
 				let next = this.createDivClass("buttonNav", "next");
 				let quit = this.createDivClass("buttonNav", "quit");
 
+				cross.addEventListener('click', e => {
+					this.popupContent.scrollTop = 0;
+					this.popupContent.innerHTML = "";
+					body.style.overflow = "auto";
+					this.hideShow(popup);
+				});
+
+				buttonL.addEventListener('click', e => {
+					this.popupContent.innerHTML = "";
+					if(this.currentProject > 0) this.currentProject--;
+					this.createPopup();
+				});
+
+				buttonN.addEventListener('click', e => {
+					this.popupContent.innerHTML = "";
+					if(this.currentProject < this.currentWorkList.length - 1) this.currentProject++;
+					this.createPopup();
+				});
+
 				previous.addEventListener('click', e => {
 					this.popupContent.innerHTML = "";
 					if(this.currentProject > 0) this.currentProject--;
@@ -231,7 +271,14 @@ class Shell {
 					this.hideShow(popup);
 				});
 
-		if(WorkProject.media != "") this.popupContent.appendChild(media);
+		if(WorkProject.media != "") {
+			this.popupContent.appendChild(divCross);
+
+			mediaBox.appendChild(nav1);
+			mediaBox.appendChild(media);
+			mediaBox.appendChild(nav2);
+			this.popupContent.appendChild(mediaBox);
+		}
 
 		if(WorkProject.title != "") content.appendChild(titlePopup);
 		if(WorkProject.content != "") content.appendChild(text);
