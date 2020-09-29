@@ -19,11 +19,6 @@ input[type="submit"]:focus{
 	outline: none;
 }
 
-iframe {
-	width:720px;
-	height:450px;
-}
-
 a {
 	text-decoration:none;
 }

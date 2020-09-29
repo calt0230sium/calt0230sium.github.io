@@ -182,37 +182,26 @@ class Shell {
 	}
 
 	createPopup(){
-		let WorkProject = this.currentWorkList[this.currentProject];
-
 		this.popupContent.scrollTop = 0;
 		body.style.overflow = "hidden";
 
-		let divCross = this.createDivClass("divCross", "");
-		let cross = this.createDivClass("buttoNav", "x");
-		divCross.appendChild(cross);
-
+		let WorkProject = this.currentWorkList[this.currentProject];
 		let mediaBox = this.createDivClass("mediaBox", "");
+		let media = this.createDivClass("media", WorkProject.media);
 
 		let nav1 = this.createDivClass("navigation", "");
 		let nav2 = this.createDivClass("navigation", "");
-
-		let buttonL = this.createDivClass("navButton", "");
-		let buttonN = this.createDivClass("navButton", "");
-
-		let l = this.createDivId("navButton", "<");
-		let n = this.createDivId("navButton", ">");		
-		
-		buttonL.appendChild(l);
-		buttonN.appendChild(n);
-
-		if(this.currentProject > 0) nav1.appendChild(buttonL);
-		if(this.currentProject < this.currentWorkList.length - 1) nav2.appendChild(buttonN);
-
-		let media = this.createDivClass("media", WorkProject.media);
-
+		//nav
+		this.createMenuNavDesktop(WorkProject, mediaBox, media, nav1, nav2);
+		//media
+		this.popupContent.appendChild(mediaBox);
+		mediaBox.appendChild(nav1);
+		mediaBox.appendChild(media);
+		mediaBox.appendChild(nav2);
+		//media description
 		let popupDescription = document.createElement("div");
 		popupDescription.setAttribute("class", "popupDescription");
-
+			//content div
 			let content = document.createElement("div");
 			content.setAttribute("class", "content");
 
@@ -226,100 +215,91 @@ class Shell {
 				let text = this.createDivId("content", WorkProject.content);
 				let date = this.createDivId("date", WorkProject.date);
 
-			let popupNav = document.createElement("div");
-				popupNav.setAttribute("class", "popupNav");
-
-				let previous = this.createDivClass("buttonNav", "previous");
-				let next = this.createDivClass("buttonNav", "next");
-				let quit = this.createDivClass("buttonNav", "quit");
-
-				cross.addEventListener('click', e => {
-					this.popupContent.scrollTop = 0;
-					this.popupContent.innerHTML = "";
-					body.style.overflow = "auto";
-					this.hideShow(popup);
-				});
-
-				buttonL.addEventListener('click', e => {
-					this.popupContent.innerHTML = "";
-					if(this.currentProject > 0) this.currentProject--;
-					this.createPopup();
-				});
-
-				buttonN.addEventListener('click', e => {
-					this.popupContent.innerHTML = "";
-					if(this.currentProject < this.currentWorkList.length - 1) this.currentProject++;
-					this.createPopup();
-				});
-
-				previous.addEventListener('click', e => {
-					this.popupContent.innerHTML = "";
-					if(this.currentProject > 0) this.currentProject--;
-					this.createPopup();
-				});
-
-				next.addEventListener('click', e => {
-					this.popupContent.innerHTML = "";
-					if(this.currentProject < this.currentWorkList.length - 1) this.currentProject++;
-					this.createPopup();
-				});
-
-				quit.addEventListener('click', e => {
-					this.popupContent.scrollTop = 0;
-					this.popupContent.innerHTML = "";
-					body.style.overflow = "auto";
-					this.hideShow(popup);
-				});
-
-		if(WorkProject.media != "") {
-			this.popupContent.appendChild(divCross);
-
-			mediaBox.appendChild(nav1);
-			mediaBox.appendChild(media);
-			mediaBox.appendChild(nav2);
-			this.popupContent.appendChild(mediaBox);
-		}
-
 		if(WorkProject.title != "") content.appendChild(titlePopup);
 		if(WorkProject.content != "") content.appendChild(text);
 		if(WorkProject.link != "") content.appendChild(link);
 		if(WorkProject.date != "") content.appendChild(date);
 
-		if(this.currentProject < this.currentWorkList.length - 1) popupNav.appendChild(next);
-		if(this.currentProject > 0) popupNav.appendChild(previous);
-
-		popupNav.appendChild(quit);
-
 		popupDescription.appendChild(content);
-		popupDescription.appendChild(popupNav);
+		//nav
+		this.createMenuMobile(popupDescription);
 
 		this.popupContent.appendChild(popupDescription);
 	}
 
-	createDivId(idDiv, content){
-		let div = document.createElement("div");
-		div.setAttribute("id", idDiv);
-		div.innerHTML = content;
+		quit() {
+			this.popupContent.scrollTop = 0;
+			this.popupContent.innerHTML = "";
+			body.style.overflow = "auto";
+			this.hideShow(popup);
+		}
 
-		return div;
-	}
+		last() {
+			this.popupContent.innerHTML = "";
+			if(this.currentProject > 0) this.currentProject--;
+			this.createPopup();
+		}
 
-	createDivClass(classDiv, content) {
-		let div = document.createElement("div");
-		div.setAttribute("class", classDiv);
-		div.innerHTML = content;
+		next() {
+			this.popupContent.innerHTML = "";
+			if(this.currentProject < this.currentWorkList.length - 1) this.currentProject++;
+			this.createPopup();
+		}
 
-		return div;
-	}
+		createMenuNavDesktop(WorkProject, mediaBox, media, nav1, nav2) {
+			if(WorkProject.media != "") {
+				//quit
+				let divCross = this.createDivClass("divCross", "");
+				let cross = this.createDivClass("buttoNav", "x");
+				divCross.appendChild(cross);
+				cross.addEventListener('click', e => {this.quit()});
+				this.popupContent.appendChild(divCross);
 
-	hideShow(div){
-	    if (div.style.display === 'none')
-	    	div.style.display = 'block';
-	    else {
-	    	this.popupContent.innerHTML = '';
-	    	div.style.display = 'none';
-	    }
-	}
+				//last
+				if(this.currentProject > 0) {						
+					let buttonL = this.createDivClass("navButton", "");
+					let l = this.createDivId("navButton", "<");
+					buttonL.appendChild(l);
+					buttonL.addEventListener('click', e => {this.last()});
+					nav1.appendChild(buttonL);
+				}
+
+				//next
+				if(this.currentProject < this.currentWorkList.length - 1) {
+					let buttonN = this.createDivClass("navButton", "");
+					let n = this.createDivId("navButton", ">");		
+					buttonN.appendChild(n);
+					nav2.appendChild(buttonN);
+					mediaBox.appendChild(nav2);
+					buttonN.addEventListener('click', e => {this.next()});
+				}
+			}
+		}
+
+		createMenuMobile(popupDescription) {
+			let popupNav = document.createElement("div");
+				popupNav.setAttribute("class", "popupNav");
+			//next
+			if(this.currentProject < this.currentWorkList.length - 1) {
+				let next = this.createDivClass("buttonNav", "next");
+				next.addEventListener('click', e => {this.next()});
+				popupNav.appendChild(next);
+			}
+
+			//last
+			if(this.currentProject > 0) {
+				let previous = this.createDivClass("buttonNav", "previous");
+				previous.addEventListener('click', e => {this.last()});
+				popupNav.appendChild(previous);
+			}
+
+			//quit
+			let quit = this.createDivClass("buttonNav", "quit");
+			quit.addEventListener('click', e => {this.quit()});
+			popupNav.appendChild(quit);
+
+			popupDescription.appendChild(popupNav);
+		}
 
 	displayAbout(){
 		let commandBox = document.createElement("div");
@@ -369,7 +349,33 @@ class Shell {
 		commandBox.appendChild(container);
 
 		this.terminal.appendChild(commandBox);
+	}	
+
+	createDivId(idDiv, content){
+		let div = document.createElement("div");
+		div.setAttribute("id", idDiv);
+		div.innerHTML = content;
+
+		return div;
 	}
+
+	createDivClass(classDiv, content) {
+		let div = document.createElement("div");
+		div.setAttribute("class", classDiv);
+		div.innerHTML = content;
+
+		return div;
+	}
+
+	hideShow(div){
+	    if (div.style.display === 'none')
+	    	div.style.display = 'block';
+	    else {
+	    	this.popupContent.innerHTML = '';
+	    	div.style.display = 'none';
+	    }
+	}
+
 
 	clearConsole(){
 		this.show_command.innerHTML = "";

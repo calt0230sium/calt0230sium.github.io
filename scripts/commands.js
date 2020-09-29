@@ -71,6 +71,6 @@ command_input.addEventListener('keypress', function(event){
 
 		SilkConsole.clearCommandInput();
 
-		window.scrollTo(0, 10000000000);
+		window.scrollTo(0,document.body.scrollHeight);
 	}
 });

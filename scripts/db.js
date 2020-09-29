@@ -17,7 +17,7 @@ let Database = {
 	],
 
 	Work : {
-		Games : new WorkList ("game", 2, [
+		Games : new WorkList ("games", 2, [
 				new Game (
 					"NonSense",
 					"http://escape.ellium.free.fr/medias/g0.png",
@@ -28,7 +28,7 @@ let Database = {
 				)
 			]),
 
-		Illustrations : new WorkList("illustration", 1, [
+		Illustrations : new WorkList("illustrations", 1, [
 
 				new Illustration(
 					"http://escape.ellium.free.fr/medias/i3.png",
@@ -51,7 +51,7 @@ let Database = {
 				)
 			]),
 
-		Programs : new WorkList("program", 3, [
+		Programs : new WorkList("programs", 3, [
 				new Program(
 					"Collide.js",
 					"Minimal javaScript game engine made with the canvas 2d technology.",
@@ -60,7 +60,7 @@ let Database = {
 				)
 			]),
 
-		music : new WorkList("music", 3, [
+		music : new WorkList("musics", 3, [
 				new Music(
 					"Cheaptune",
 					"https://www.youtube.com/embed/HnLUhWBHGDc",
