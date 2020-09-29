@@ -3,6 +3,10 @@
 		font-size:40px;
 	}
 
+	.navLink {
+		font-size:25px;
+	}
+
 	.input {
 		font-size:40px;
 	}
@@ -44,6 +48,10 @@
 }
 
 @media screen and (max-width: 500px) {
+	.navLink {
+		font-size:5px;
+	}
+
 	.work {
 		flex-direction:column;
 	}
@@ -62,6 +70,10 @@
 
 	.input {
 		font-size:12px;
+	}
+
+	.omegaTitle {
+		font-size:20px;
 	}
 
 	.workTitle {
