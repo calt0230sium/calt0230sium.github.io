@@ -193,8 +193,6 @@ class Shell {
 		let nav2 = this.createDivClass("navigation", "");
 		//nav
 		this.createMenuNavDesktop(WorkProject, mediaBox, media, nav1, nav2);
-		//media
-		this.popupContent.appendChild(mediaBox);
 		mediaBox.appendChild(nav1);
 		mediaBox.appendChild(media);
 		mediaBox.appendChild(nav2);
@@ -273,6 +271,9 @@ class Shell {
 					mediaBox.appendChild(nav2);
 					buttonN.addEventListener('click', e => {this.next()});
 				}
+						
+				//media
+				this.popupContent.appendChild(mediaBox);
 			}
 		}
 
