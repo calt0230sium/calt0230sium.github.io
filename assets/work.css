@@ -105,11 +105,11 @@
 
 	opacity:1;
 
-	transition: 0.5s;
+	transition: 0.2s;
 }
 
 	.project2:hover {
-		transition: 0.5s;
+		transition: 0.2s;
 
 		opacity:0.5;
 	}
