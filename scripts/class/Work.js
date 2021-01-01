@@ -38,6 +38,6 @@ class Program extends Work {
 
 class Music extends Work {
 	constructor(title, media, date) {
-		super(title, "", '<iframe src="'+media+'" frameborder="0", allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen id="media"  width="800px" height="500px"></iframe>', "", media, date);
+		super(title, "", "", "", media, date);
 	}
 }

@@ -20,8 +20,8 @@ let Database = {
 		Games : new WorkList ("games", 2, [
 				new Game (
 					"NonSense",
-					"http://escape.ellium.free.fr/medias/g0.png",
-					"http://escape.ellium.free.fr/medias/g0.gif",
+					"./assets/pictures/g0.png",
+					"./assets/pictures/g1.png",
 					"NonSense is a 2d plateformer which take place in strange ruins : the laws of gravity changes depending on where you are. Everyone in this place seem to be an explorer in quest of a powerful and mysterious treasure...",
 					"https://si1k.itch.io/nonsense",
 					"01/08/2019"
@@ -31,22 +31,22 @@ let Database = {
 		Illustrations : new WorkList("illustrations", 1, [
 
 				new Illustration(
-					"http://escape.ellium.free.fr/medias/i3.png",
+					"./assets/pictures/i3.png",
 					"27/06/2020"
 				),
 
 				new Illustration(
-					"http://escape.ellium.free.fr/medias/i2.png",
+					"./assets/pictures/i2.png",
 					"07/08/2019"
 				),
 
 				new Illustration(
-					"http://escape.ellium.free.fr/medias/i1.png",
+					"./assets/pictures/i1.png",
 					"05/12/2019"
 				),
 
 				new Illustration(
-					"http://escape.ellium.free.fr/medias/i0.png",
+					"./assets/pictures/i0.png",
 					"15/07/2018"
 				)
 			]),
