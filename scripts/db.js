@@ -11,7 +11,7 @@ let Database = {
 
 	Social : [
 		["itch.io", "https://si1k.itch.io/", "#F26C6C"],
-		["twitter", "https://twitter.com/Silk_rgb", "#6C71F2"],
+		["twitter", "https://twitter.com/caesiummn", "#6C71F2"],
 		["github", "https://github.com/Silk-machines", "#FED85A"],
 		["youtube", "https://www.youtube.com/channel/UCCm5D4vmr7RqnJYf0joL1fw/featured", "#ED7FAF"]
 	],
@@ -82,10 +82,12 @@ let Database = {
 	},
 
 	About : ["About :", "I'm a computer scientist student, and amateur game devlopper."],
-
+	
 	Skill : [
-		["Java", 40],
-		["Scala", 35],
+		["Java", 60],
+		["Scala", 40],
+		["C++", 30],
+		["Python", 40],
 		["HTML/CSS", 60],
 		["javaScript", 50],
 		["PHP", 30],
