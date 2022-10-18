@@ -10,10 +10,8 @@ let Database = {
 	],
 
 	Social : [
-		["itch.io", "https://si1k.itch.io/", "#F26C6C"],
-		["twitter", "https://twitter.com/caesiummn", "#6C71F2"],
-		["github", "https://github.com/Silk-machines", "#FED85A"],
-		["youtube", "https://www.youtube.com/channel/UCCm5D4vmr7RqnJYf0joL1fw/featured", "#ED7FAF"]
+		["itch.io", "https://caesiumm.itch.io/", "#F26C6C"],
+		["github", "https://github.com/calt0230sium", "#6C71F2"],
 	],
 
 	Work : {
