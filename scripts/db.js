@@ -28,7 +28,7 @@ let Database = {
 			new Project (
 				"./assets/pictures/g0.png",
 				"NonSense",
-				"NonSense is a 2d plateformer which take place in strange ruins : the laws of gravity changes depending on where you are.",
+				"NonSense is a 2d plateformer which take place in strange ruin : the laws of gravity changes depending on where you are.",
 				[ 
 					["test it", "https://caesiumm.itch.io/nonsense"], 
 				],
