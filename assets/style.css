@@ -31,7 +31,9 @@ header {
 }
 
 nav {
-	width:100%;
+	width:50%;
+	padding-top: 3%;
+	float: right;
 	padding-top:0.5%;
 
 	display:flex;

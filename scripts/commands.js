@@ -16,7 +16,6 @@ window.onload = function() {
 	console.log(asciiLogo.innerHTML);
 
 	SilkConsole.displayStart();
-	SilkConsole.hideShow(popup);
 }
 
 command_input.addEventListener('keypress', function(event){

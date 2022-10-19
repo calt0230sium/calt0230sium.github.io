@@ -1,9 +1,8 @@
 /* header */
 
 .asciiTitle {
-	width:100%;
+	width:50%;
 	font-size:15px;
-	text-align:center;
 }
 
 #title {
@@ -44,7 +43,8 @@
 		color:white;
 		
 		font-family: 'VT323', monospace;
-
+		font-size:20px;
+		
 		outline: none;
 
 		transition-duration: 0.2s;

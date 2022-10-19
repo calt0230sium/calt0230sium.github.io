@@ -24,8 +24,6 @@
 
 	.project {
 		flex-basis:30%;
-		padding-top:20%;
-		padding-bottom:20%;
 	}
 
 	.workTitle {
@@ -65,11 +63,11 @@
 	}
 
 	body {
-		font-size:10px;
+		font-size:20px;
 	}
 
 	.input {
-		font-size:12px;
+		font-size:20px;
 	}
 
 	.omegaTitle {

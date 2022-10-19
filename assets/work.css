@@ -1,3 +1,70 @@
+.workGrid {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: row;
+	align-items: stretch;
+}
+
+.projectArticle {
+	flex-basis:48%;
+	padding: 0.75%;
+	margin: 0.25%;
+	display: flex;
+
+	background-color: #212121;
+
+	transition-duration: 0.2s;
+}
+
+.projectArticle:hover {
+	transition-duration: 0.2s;
+	
+	background-color: 131313;
+}
+
+.projectPicture {
+	width: 100%;
+	margin-right: 3%;
+
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.projectDescription {
+	flex-basis: 100%;
+
+	display: flex;
+	flex-direction: column;
+
+	text-align: justify;
+
+	margin: 0;
+	padding: 0;
+}
+
+.projectTitle {
+	padding: 0;
+	margin: 0;
+}
+
+.projectLinks {
+}
+
+.projectLinks a {
+	text-decoration: none;
+	margin-right: 5%;
+	color: grey;
+
+	transition-duration: 0.2s;
+}
+
+.projectLinks a:hover {
+	transition-duration: 0.2s;
+
+	color: silver;
+}
+
 /*******************************/
 /***********WORKLIST************/
 /*******************************/
@@ -16,7 +83,7 @@
 
 /* work div type 1 */
 
-.work {
+.workRow {
 	width:100%;
 
 	display: flex;
@@ -27,7 +94,7 @@
 
 /* work div type 2 */ 
 
-.work2 {
+.workColumn {
 	width:100%;
 
 	display: flex;
@@ -62,7 +129,7 @@
 
 /* project type 1 */
 
-.project {
+.projectRow {
 	flex-basis:5%;
 	padding:10%;
 	cursor:pointer;
@@ -77,7 +144,7 @@
 	transition-duration:0.2s;
 }
 
-	.project:hover {
+	.projectRow:hover {
 		transition-duration:0.2s;
 
 		opacity:0.5;
@@ -88,7 +155,7 @@
 
 /* project type 2*/
 
-.project2 {
+.projectColumn {
 	width:98%;
 	padding:1%;
 	padding-top:6.1%;
@@ -108,30 +175,7 @@
 	transition: 0.2s;
 }
 
-	.project2:hover {
-		transition: 0.2s;
-
-		opacity:0.5;
-	}
-
-/* project type 3 */
-
-.project3 {
-	padding:1%;
-	margin:0;
-
-	position: relative;
-
-	cursor:pointer;
-
-	background-color:#212121;
-
-	opacity:1;
-
-	transition: 0.2s;
-}
-
-	.project3:hover {
+	.projectColumn:hover {
 		transition: 0.2s;
 
 		opacity:0.5;

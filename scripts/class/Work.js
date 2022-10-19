@@ -41,3 +41,12 @@ class Music extends Work {
 		super(title, "", "", "", media, date);
 	}
 }
+
+class Project {
+	constructor(media, title, description, links) {
+		this.media = media;
+		this.title = title;
+		this.description = description;
+		this.links = links;
+	}
+}

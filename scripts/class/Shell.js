@@ -18,6 +18,20 @@ class Shell {
 		this.command_input.value = "";
 	}
 
+	createDiv(classDiv, idDiv, content){
+		let div = document.createElement("div");
+
+		div.setAttribute("class", classDiv);
+		div.setAttribute("id", idDiv);
+		div.innerHTML = content;
+
+		return div;
+	}
+
+	createDivWithClass(classDiv) {
+		return this.createDiv(classDiv, "", "");
+	}
+
 	login(str){
 		let div = document.createElement("div");
 		div.setAttribute("class", "commandBox");
@@ -25,10 +39,9 @@ class Shell {
 		if(str != "") {
 			this.user = this.htmlEntities(str);
 			div.innerHTML = this.user + " > Your new username is : " + this.user;
-			if (this.user === "Silk" || this.user === "silk")
-				div.innerHTML += "<br> Oh, Hello me !";
-		} else
+		} else {
 			div.innerHTML = this.user + " > You must enter a username to log in !";
+		}
 
 		this.terminal.appendChild(div);
 	}
@@ -59,7 +72,7 @@ class Shell {
 		workCommands.style.paddingLeft = "1%";
 		workCommands.innerHTML = "\"specific work\" commands : <br>"
 		
-		for(const WorkList in this.db.Work) workCommands.innerHTML += this.db.Work[WorkList].title + "? : Display my " + this.db.Work[WorkList].title  + "(s)<br>";
+		for(const WorkList in this.db.Work) workCommands.innerHTML += this.db.Work[WorkList].title + "? : Display " + this.db.Work[WorkList].title  + "(s)<br>";
 
 		commands.appendChild(workCommands);
 		div.appendChild(commands);
@@ -71,8 +84,7 @@ class Shell {
 	displayWelcome(){
 		let div = document.createElement("div");
 		div.setAttribute("class", "commandBox");
-		div.innerHTML = "Silk > Hello and welcome to my Website ! <br>"+
-						"You can type help in the command input to discover more.";
+		div.innerHTML = "> You can type help in the command input to discover more.";
 
 		this.terminal.appendChild(div);
 	}
@@ -103,204 +115,106 @@ class Shell {
 
 		this.terminal.appendChild(header);
 		this.displayAllWorks();
+		this.displayAbout();
 		this.displayWelcome();
 	}
 
 	displayAllWorks(){
-		let container = document.createElement("div");
-		container.setAttribute("class", "container");
-		container.innerHTML = "<h1 class='omegaTitle'>my work</h1>";
-		this.terminal.appendChild(container);
-
 		for(const WorkList in this.db.Work) this.displayWork(this.db.Work[WorkList]);
+	}
+
+	createWorkDiv(displayType) {
+		let workDiv = document.createElement("div");
+
+		switch(displayType){
+			case 1: workDiv = this.createDivWithClass("workRow"); break; 
+			case 2: workDiv = this.createDivWithClass("workColumn"); break;
+			case 3: workDiv = this.createDivWithClass("workGrid"); break;
+		}
+
+		return workDiv;
+	}
+
+	createProjectDiv(displayType, currentProject) {
+		let project = document.createElement("div");
+
+		switch(displayType){
+
+			case 1:
+				project.setAttribute("class", "projectRow");
+				project.style.backgroundImage  = "url(\"" + currentProject.background + "\")";
+				project.addEventListener("click", e => {
+					window.open(currentProject.background, '_blank');
+				});
+				break;
+			
+			case 2:
+				project.setAttribute("class", "projectColumn");
+				project.innerHTML = "<h1 class='titleProjectBig'>" + currentProject.title + "</h1>";
+				project.style.backgroundImage  = "url(\"" + currentProject.background + "\")";
+				project.addEventListener("click", e => {
+					window.open(currentProject.link, '_blank');
+				});
+				break;
+			
+			case 3:
+				project.setAttribute("class", "projectArticle");
+				
+				let projectPicture = this.createDivWithClass("projectPicture");
+				projectPicture.style.backgroundImage = "url(\"" + currentProject.media + "\")";
+
+				let projectDescription = this.createDivWithClass("projectDescription");
+				projectDescription.innerHTML = "<h1 class='projectTitle'>" + currentProject.title + "</h1>";
+				projectDescription.innerHTML += "<p>" + currentProject.description + "</p>";
+
+				let projectLink = this.createDivWithClass("projectLinks");
+
+				for (let i = 0; i < currentProject.links.length; i++) {
+					let link = currentProject.links[i]
+					let linkDiv = document.createElement("a");
+					linkDiv.setAttribute("href", link[1]);
+					linkDiv.setAttribute("target", "_blank");
+					linkDiv.innerHTML = link[0];
+					projectLink.appendChild(linkDiv);
+				}
+
+				project.appendChild(projectPicture);
+				projectDescription.appendChild(projectLink);
+				project.appendChild(projectDescription);
+				break;
+		}
+
+		return project;
 	}
 
 	displayWork(WorkList){
 		//container
-		let work = document.createElement("div");
-
-		switch(WorkList.displayType){
-			//row
-			case 1:
-				work.setAttribute("class", "work");
-			break;
-			//column 
-			case 2:
-				work.setAttribute("class", "work2");
-			break;
-			//column
-			case 3:
-				work.setAttribute("class", "work2");
-			break;
-		}
+		let work = this.createWorkDiv(WorkList.displayType);
 
 		//title
 		let title = document.createElement("h3");
 		title.innerHTML = WorkList.title;
 		title.setAttribute("class", "workTitle");
-
 		work.appendChild(title); 
 
 		let content;
+		let WorkProject;
 
 		for(let i = 0; i < WorkList.list.length; i++) {
-			let WorkProject = WorkList.list[i];
+			WorkProject = WorkList.list[i];
 
-			content = document.createElement("div");
-			work.appendChild(content);
-
-			switch(WorkList.displayType){
-				//row
-				case 1:
-					content.setAttribute("class", "project");
-					content.style.backgroundImage  = "url(\"" + WorkProject.background + "\")";
-				break;
-				//column background
-				case 2:
-					content.setAttribute("class", "project2");
-					content.innerHTML = "<h1 class='titleProjectBig'>" + WorkProject.title + "</h1>";
-					content.style.backgroundImage  = "url(\"" + WorkProject.background + "\")";
-				break;
-				//column
-				case 3:
-					content.setAttribute("class", "project3");
-					content.innerHTML = "<h1 class='titleProject'>" + WorkProject.title + "</h1>";
-				break;
-			}
-
-			//popup
+			content = this.createProjectDiv(WorkList.displayType, WorkProject);
+			// links
 			content.addEventListener("click", e => {
 				this.currentProject = i;
 				this.currentWorkList = WorkList.list;
 
-				this.createPopup();
-				this.hideShow(popup);
 			});
+			work.appendChild(content);
 		}
 
 		this.terminal.appendChild(work);
 	}
-
-	createPopup(){
-		this.popupContent.scrollTop = 0;
-		body.style.overflow = "hidden";
-
-		let WorkProject = this.currentWorkList[this.currentProject];
-		let mediaBox = this.createDivClass("mediaBox", "");
-		let media = this.createDivClass("media", WorkProject.media);
-
-		let nav1 = this.createDivClass("navigation", "");
-		let nav2 = this.createDivClass("navigation", "");
-		//nav
-		this.createMenuNavDesktop(WorkProject, mediaBox, media, nav1, nav2);
-		mediaBox.appendChild(nav1);
-		mediaBox.appendChild(media);
-		mediaBox.appendChild(nav2);
-		//media description
-		let popupDescription = document.createElement("div");
-		popupDescription.setAttribute("class", "popupDescription");
-			//content div
-			let content = document.createElement("div");
-			content.setAttribute("class", "content");
-
-				let titlePopup = this.createDivId("titlePopup", WorkProject.title);
-				let link = document.createElement("a");
-				link.setAttribute("href", WorkProject.link);
-				link.setAttribute("target", "blank");
-				let userCurrent = "";
-				if(this.user != "user") userCurrent = this.user;
-				link.innerHTML = "<div class='buttonNav'> take a look " + userCurrent + " ! </div>";
-				let text = this.createDivId("content", WorkProject.content);
-				let date = this.createDivId("date", WorkProject.date);
-
-		if(WorkProject.title != "") content.appendChild(titlePopup);
-		if(WorkProject.content != "") content.appendChild(text);
-		if(WorkProject.link != "") content.appendChild(link);
-		if(WorkProject.date != "") content.appendChild(date);
-
-		popupDescription.appendChild(content);
-		//nav
-		this.createMenuMobile(popupDescription);
-
-		this.popupContent.appendChild(popupDescription);
-	}
-
-		quit() {
-			this.popupContent.scrollTop = 0;
-			this.popupContent.innerHTML = "";
-			body.style.overflow = "auto";
-			this.hideShow(popup);
-		}
-
-		last() {
-			this.popupContent.innerHTML = "";
-			if(this.currentProject > 0) this.currentProject--;
-			this.createPopup();
-		}
-
-		next() {
-			this.popupContent.innerHTML = "";
-			if(this.currentProject < this.currentWorkList.length - 1) this.currentProject++;
-			this.createPopup();
-		}
-
-		createMenuNavDesktop(WorkProject, mediaBox, media, nav1, nav2) {
-			if(WorkProject.media != "") {
-				//quit
-				let divCross = this.createDivClass("divCross", "");
-				let cross = this.createDivClass("buttoNav", "x");
-				divCross.appendChild(cross);
-				cross.addEventListener('click', e => {this.quit()});
-				this.popupContent.appendChild(divCross);
-
-				//last
-				if(this.currentProject > 0) {						
-					let buttonL = this.createDivClass("navButton", "");
-					let l = this.createDivId("navButton", "<");
-					buttonL.appendChild(l);
-					buttonL.addEventListener('click', e => {this.last()});
-					nav1.appendChild(buttonL);
-				}
-
-				//next
-				if(this.currentProject < this.currentWorkList.length - 1) {
-					let buttonN = this.createDivClass("navButton", "");
-					let n = this.createDivId("navButton", ">");		
-					buttonN.appendChild(n);
-					nav2.appendChild(buttonN);
-					mediaBox.appendChild(nav2);
-					buttonN.addEventListener('click', e => {this.next()});
-				}
-						
-				//media
-				this.popupContent.appendChild(mediaBox);
-			}
-		}
-
-		createMenuMobile(popupDescription) {
-			let popupNav = document.createElement("div");
-				popupNav.setAttribute("class", "popupNav");
-			//next
-			if(this.currentProject < this.currentWorkList.length - 1) {
-				let next = this.createDivClass("buttonNav", "next");
-				next.addEventListener('click', e => {this.next()});
-				popupNav.appendChild(next);
-			}
-
-			//last
-			if(this.currentProject > 0) {
-				let previous = this.createDivClass("buttonNav", "previous");
-				previous.addEventListener('click', e => {this.last()});
-				popupNav.appendChild(previous);
-			}
-
-			//quit
-			let quit = this.createDivClass("buttonNav", "quit");
-			quit.addEventListener('click', e => {this.quit()});
-			popupNav.appendChild(quit);
-
-			popupDescription.appendChild(popupNav);
-		}
 
 	displayAbout(){
 		let commandBox = document.createElement("div");
@@ -350,22 +264,6 @@ class Shell {
 		commandBox.appendChild(container);
 
 		this.terminal.appendChild(commandBox);
-	}	
-
-	createDivId(idDiv, content){
-		let div = document.createElement("div");
-		div.setAttribute("id", idDiv);
-		div.innerHTML = content;
-
-		return div;
-	}
-
-	createDivClass(classDiv, content) {
-		let div = document.createElement("div");
-		div.setAttribute("class", classDiv);
-		div.innerHTML = content;
-
-		return div;
 	}
 
 	hideShow(div){
@@ -376,7 +274,6 @@ class Shell {
 	    	div.style.display = 'none';
 	    }
 	}
-
 
 	clearConsole(){
 		this.show_command.innerHTML = "";
