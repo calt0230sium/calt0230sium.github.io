@@ -88,7 +88,7 @@ let Database = {
 			]),
 	},
 
-	About : ["About :", "Hello and welcome on my Website ! <br> I'm a computer scientist student interested in the field of computer graphic. I'm also an amateur game developer and artist."],
+	About : ["About :", "Hello and welcome on my Website ! <br> I'm a computer scientist student interested in the field of computer graphics. I'm also an amateur game developer and artist."],
 	
 	Skill : [
 		["2D physics", 20],
